@@ -1,0 +1,13 @@
+{
+  "name": "test-npm-gh-action",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:aknorw/test-npm-gh-action.git",
+  "author": "aknorw <15245704+aknorw@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Running tests for version $npm_package_version...\"",
+    "preversion": "yarn test",
+    "postversion": "git push --tags && git push && echo \"Successfully pushed v$npm_package_version to GitHub!\""
+  }
+}
