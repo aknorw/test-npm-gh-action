@@ -1,4 +1,4 @@
-name: NPM Publish
+name: Publish & Tag
 
 on:
   push:
@@ -28,12 +28,12 @@ jobs:
         with:
           node-version: 10
           registry-url: https://registry.npmjs.org/
-      - run: npx can-npm-publish --verbose && npm publish || echo "Version already published."
+      - run: npx can-npm-publish --verbose && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
-  # Push tag to GitHub.
-  tag:
+  # Push tag to GitHub if version defined in package.json is not tagged.
+  git-tag:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
