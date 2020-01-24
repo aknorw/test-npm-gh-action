@@ -2,9 +2,6 @@ name: publish
 
 on:
   push:
-    branches:
-      - master
-      - "!*"
     tags:
       - "v*.*.*"
 
@@ -13,6 +10,7 @@ jobs:
   install-deps:
     runs-on: ubuntu-latest
     steps:
+      if: github.ref == 'refs/heads/master'
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
