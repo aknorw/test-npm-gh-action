@@ -1,0 +1,21 @@
+name: tag
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "!*"
+
+jobs:
+  # Push tag to GitHub if version defined in package.json is not tagged.
+  git-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azu/action-package-version-to-git-tag@v1
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}} # Automatically created by GitHub.
+          github_repo: ${{github.repository}}
+          git_commit_sha: ${{github.sha}}
+          git_tag_prefix: "v"
