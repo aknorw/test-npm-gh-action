@@ -1,6 +1,6 @@
 {
   "name": "test-npm-gh-action",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "repository": "git@github.com:aknorw/test-npm-gh-action.git",
   "author": "aknorw <15245704+aknorw@users.noreply.github.com>",
