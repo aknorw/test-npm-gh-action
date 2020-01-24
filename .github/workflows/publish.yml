@@ -1,9 +1,8 @@
 name: publish
 
 on:
-  push:
-    release:
-      types: [created]
+  release:
+    types: [created]
 
 jobs:
   # Install dependencies.
