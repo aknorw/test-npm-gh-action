@@ -2,10 +2,8 @@ name: publish
 
 on:
   push:
-    branches:
-      - master
-    tags:
-      - "v*.*.*"
+    release:
+      types: [created]
 
 jobs:
   # Install dependencies.
