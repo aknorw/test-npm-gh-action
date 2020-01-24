@@ -9,8 +9,6 @@
     "test": "echo \"Running tests for version $npm_package_version...\"",
     "clean": "echo \"Cleaning $npm_package_version...\"",
     "build": "echo \"Building $npm_package_version...\"",
-    "prepublishOnly": "npm run clean && npm run build",
-    "preversion": "yarn test",
-    "postversion": "git push && echo \"Successfully pushed v$npm_package_version to GitHub!\""
+    "prepublishOnly": "npm run clean && npm run build"
   }
 }
