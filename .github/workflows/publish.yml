@@ -2,19 +2,43 @@ name: NPM Publish
 
 on:
   push:
+    branches:
+      - master
     tags:
-      - "*"
+      - "!*"
 
 jobs:
-  publish-npm:
+  # Install dependencies.
+  install-deps:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 10
+      - run: yarn --frozen-lockfile
+
+  # Publish to NPM if version defined in package.json is not published.
+  publish:
+    needs: install-deps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
           registry-url: https://registry.npmjs.org/
-      - run: yarn install
-      - run: npm publish
+      - run: npx can-npm-publish --verbose && npm publish || echo "Version already published."
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  # Push tag to GitHub.
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azu/action-package-version-to-git-tag@v1
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          github_repo: ${{github.repository}}
+          git_commit_sha: ${{github.sha}}
+          git_tag_prefix: "v"
