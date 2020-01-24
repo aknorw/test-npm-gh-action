@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: azu/action-package-version-to-git-tag@v1
+      - uses: azu/action-package-version-to-git-tag@c774971
         with:
           github_token: ${{secrets.GITHUB_TOKEN}} # Automatically created by GitHub.
           github_repo: ${{github.repository}}
