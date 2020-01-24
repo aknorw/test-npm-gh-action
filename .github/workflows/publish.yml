@@ -30,5 +30,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       # Because of prepublishOnly script, it will be cleaned and built before published.
       - run: npx can-npm-publish --verbose && npm publish
+        if: github.ref == 'refs/heads/master'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
