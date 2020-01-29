@@ -20,7 +20,6 @@ jobs:
 
   # Publish to NPM if version defined in package.json is not published.
   publish:
-    needs: install-deps
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
