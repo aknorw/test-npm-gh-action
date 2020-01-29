@@ -7,8 +7,11 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Running tests for version $npm_package_version...\"",
-    "clean": "echo \"Cleaning $npm_package_version...\"",
+    "clean": "del-cli 'lib/*'",
     "build": "echo \"Building $npm_package_version...\"",
     "prepublishOnly": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "del-cli": "^3.0.0"
   }
 }
