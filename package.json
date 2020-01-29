@@ -1,14 +1,17 @@
 {
   "name": "test-npm-gh-action",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "index.js",
   "repository": "git@github.com:aknorw/test-npm-gh-action.git",
   "author": "aknorw <15245704+aknorw@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
     "test": "echo \"Running tests for version $npm_package_version...\"",
-    "clean": "echo \"Cleaning $npm_package_version...\"",
+    "clean": "del-cli 'lib/*'",
     "build": "echo \"Building $npm_package_version...\"",
     "prepublishOnly": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "del-cli": "^3.0.0"
   }
 }
